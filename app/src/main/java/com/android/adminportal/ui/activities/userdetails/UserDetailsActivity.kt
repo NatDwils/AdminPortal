@@ -18,6 +18,7 @@ import com.android.adminportal.ui.dialogs.DevicesDialogSheet
 import com.android.adminportal.ui.dialogs.ProgressDialog
 import com.android.adminportal.utils.ktx.decode
 import com.android.adminportal.utils.ktx.launchActivityRTL
+import com.android.adminportal.utils.ktx.launchActivityWithDataRTL
 import com.android.adminportal.utils.ktx.showToast
 import com.android.adminportal.utils.others.AppUtils
 import com.android.adminportal.utils.viewState.ResponseResult
@@ -68,7 +69,9 @@ class UserDetailsActivity : BaseActivity<ActivityUserDetailsBinding, UserDetails
         viewModel.setUserData(intent.getSerializableExtra("user") as User)
 
         viewDataBinding.btnAssign.setOnClickListener{
-            launchActivityRTL(AssignDeviceActivity::class.java)
+            val bundle = Bundle()
+            bundle.putSerializable("user", intent.getSerializableExtra("user") as User)
+            launchActivityWithDataRTL(UserDetailsActivity::class.java, bundle)
         }
     }
 

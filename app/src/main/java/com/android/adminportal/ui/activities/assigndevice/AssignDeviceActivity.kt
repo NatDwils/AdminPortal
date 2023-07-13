@@ -58,9 +58,7 @@ class AssignDeviceActivity : BaseActivity<ActivityAssignDeviceBinding, AssignDev
                 otherDetails = viewDataBinding.etOther.text.toString()
             )
 
-            var currentUser: User
-
-            viewModel.assignDevice(device, currentUser)
+            viewModel.assignDevice(device, intent.getSerializableExtra("user") as User)
         }
     }
 
