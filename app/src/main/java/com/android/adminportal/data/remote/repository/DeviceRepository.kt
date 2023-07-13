@@ -5,9 +5,6 @@ import com.android.adminportal.data.model.Device
 import com.android.adminportal.data.model.User
 import com.android.adminportal.utils.viewState.ResponseResult
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.tasks.await
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class DeviceRepository @Inject constructor(

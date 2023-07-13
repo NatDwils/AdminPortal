@@ -18,6 +18,30 @@
         android:orientation="vertical"
         android:paddingTop="55dp">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/user_id_lable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Employee Id"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/employeeIdTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{}"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@id/user_id_lable"
+            app:layout_constraintStart_toStartOf="@id/user_id_lable"
+            app:layout_constraintTop_toBottomOf="@id/user_id_lable" />
+
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -47,6 +71,7 @@
                     android:layout_marginTop="40dp"
                     android:drawablePadding="8dp"
                     android:hint="Device Id"
+                    android:maxLength="10"
                     android:padding="8dp"
                     android:singleLine="true" />
 
@@ -57,7 +82,6 @@
                     android:layout_marginTop="20dp"
                     android:drawablePadding="8dp"
                     android:hint="Device Name"
-                    android:maxLength="10"
                     android:padding="8dp"
                     android:singleLine="true" />
 
@@ -68,7 +92,6 @@
                     android:layout_marginTop="20dp"
                     android:drawablePadding="8dp"
                     android:hint="Device Type"
-                    android:maxLength="10"
                     android:padding="8dp"
                     android:singleLine="true" />
 
@@ -115,6 +138,7 @@
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
+        </LinearLayout>
 
     </ScrollView>
 </layout>

@@ -5,16 +5,11 @@ import androidx.activity.viewModels
 import androidx.lifecycle.LiveData
 import com.android.adminportal.BR
 import com.android.adminportal.R
-import com.android.adminportal.data.local.MyPref.DataPreference
-import com.android.adminportal.data.local.MyPref.DataPreferenceKeys
 import com.android.adminportal.data.model.Device
 import com.android.adminportal.data.model.User
 import com.android.adminportal.databinding.ActivityAssignDeviceBinding
-import com.android.adminportal.ui.activities.userdetails.UserDetailsActivity
 import com.android.adminportal.ui.base.BaseActivity
 import com.android.adminportal.ui.dialogs.ProgressDialog
-import com.android.adminportal.utils.ktx.encode
-import com.android.adminportal.utils.ktx.launchActivityRTL
 import com.android.adminportal.utils.ktx.showToast
 import com.android.adminportal.utils.viewState.ResponseResult
 import dagger.hilt.android.AndroidEntryPoint
@@ -50,6 +45,7 @@ class AssignDeviceActivity : BaseActivity<ActivityAssignDeviceBinding, AssignDev
 
         viewDataBinding.btnAssign.setOnClickListener {
             val device = Device(
+                employeeId=viewDataBinding.employeeIdTextView.text.toString(),
                 deviceId = viewDataBinding.etDeviceId.text.toString(),
                 deviceName = viewDataBinding.etDeviceName.text.toString(),
                 deviceType = viewDataBinding.etDeviceType.text.toString(),
