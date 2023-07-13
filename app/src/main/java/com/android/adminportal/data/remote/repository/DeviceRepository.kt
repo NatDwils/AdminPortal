@@ -2,6 +2,7 @@ package com.android.adminportal.data.remote.repository
 
 import com.android.adminportal.data.local.room.AppDatabase
 import com.android.adminportal.data.model.Device
+import com.android.adminportal.data.model.User
 import com.android.adminportal.utils.viewState.ResponseResult
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.Dispatchers
@@ -35,6 +36,10 @@ class DeviceRepository @Inject constructor(
         }.addOnFailureListener {
 
         }
+    }
+
+    fun assignDevice(device: Device?, callback: (ResponseResult<User>) -> Unit) {
+
     }
 
 }
