@@ -78,4 +78,15 @@ class AuthRepository @Inject constructor(
             }
     }
 
+    fun reset(email: String, callback: (ResponseResult<String>) -> Unit) {
+
+        firebaseAuth.sendPasswordResetEmail(email).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                    callback.invoke(ResponseResult.Success("Email sent"))
+            } else {
+                callback(ResponseResult.Error("Something went wrong, please try after some time."))
+            }
+        }
+    }
+
 }
