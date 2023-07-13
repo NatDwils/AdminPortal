@@ -50,7 +50,7 @@ class EditProfileActivity : BaseActivity<ActivityEditProfileBinding, EditProfile
         * Get user by pref..
         * */
         val user =
-            DataPreference.getValue(DataPreferenceKeys.USER_SESSION, String::class.java)?.decode(User::class.java)
+            DataPreference.getValue(DataPreferenceKeys.USER_SESSION, User::class.java)?.decode(User::class.java)
 
         viewModel.fetchUserDetails(user)
 
