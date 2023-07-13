@@ -86,6 +86,9 @@ class AuthRepository @Inject constructor(
             } else {
                 callback(ResponseResult.Error("Something went wrong, please try after some time."))
             }
+        }.addOnFailureListener {
+            callback.invoke(ResponseResult.Error("No User exists with $email. Please check you email and try again"))
+
         }
     }
 
