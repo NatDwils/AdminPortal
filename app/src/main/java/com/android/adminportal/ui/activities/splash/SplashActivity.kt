@@ -41,7 +41,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>() {
     }
 
     private fun isUserAlreadyLogin() {
-        val value = DataPreference.getValue(DataPreferenceKeys.USER_SESSION)
+        val value = DataPreference.getValue(DataPreferenceKeys.USER_SESSION, String::class.java)
 
         Handler(Looper.getMainLooper()).postDelayed({
             if (value.isNullOrEmpty()) {

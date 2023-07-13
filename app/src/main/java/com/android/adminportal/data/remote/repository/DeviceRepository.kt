@@ -38,8 +38,30 @@ class DeviceRepository @Inject constructor(
         }
     }
 
-    fun assignDevice(device: Device?, callback: (ResponseResult<User>) -> Unit) {
+    fun assignDevice(device: Device, user: User, callback: (ResponseResult<User>) -> Unit) {
+        val userRef = store.collection("user").document(user.id)
+        val deviceRef = userRef.collection("devices").document(device.deviceId)
 
+        // Check if the device ID is already assigned to another user
+        deviceRef.get().addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                val document = task.result
+                if (document != null && document.exists()) {
+                    // Device ID is already assigned to another user
+                    callback(ResponseResult.Error("Device ID is already assigned to another user."))
+                } else {
+                    // Device ID is available, assign it to the user
+                    deviceRef.set(device).addOnSuccessListener {
+                        callback(ResponseResult.Success(user))
+                    }.addOnFailureListener { exception ->
+                        callback(ResponseResult.Error(exception.message.toString()))
+                    }
+                }
+            } else {
+                callback(ResponseResult.Error(task.exception?.message.toString()))
+            }
+        }
     }
+
 
 }

@@ -1,6 +1,5 @@
 package com.android.adminportal.ui.activities.assigndevice
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.LiveData
@@ -11,15 +10,11 @@ import com.android.adminportal.data.local.MyPref.DataPreferenceKeys
 import com.android.adminportal.data.model.Device
 import com.android.adminportal.data.model.User
 import com.android.adminportal.databinding.ActivityAssignDeviceBinding
-import com.android.adminportal.databinding.ActivitySignupBinding
-import com.android.adminportal.ui.activities.login.LoginActivity
-import com.android.adminportal.ui.activities.signup.SignUpViewModel
 import com.android.adminportal.ui.activities.userdetails.UserDetailsActivity
 import com.android.adminportal.ui.base.BaseActivity
 import com.android.adminportal.ui.dialogs.ProgressDialog
 import com.android.adminportal.utils.ktx.encode
 import com.android.adminportal.utils.ktx.launchActivityRTL
-import com.android.adminportal.utils.ktx.launchActivityWithClearTaskRTL
 import com.android.adminportal.utils.ktx.showToast
 import com.android.adminportal.utils.viewState.ResponseResult
 import dagger.hilt.android.AndroidEntryPoint
@@ -48,49 +43,49 @@ class AssignDeviceActivity : BaseActivity<ActivityAssignDeviceBinding, AssignDev
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         init()
-//        observeAssignResult(viewModel.assignResult)
+        observeAssignResult(viewModel.assignResult)
     }
 
     private fun init() {
-        /*
-        * Register user
-        * */
+
         viewDataBinding.btnAssign.setOnClickListener {
             val device = Device(
-                    deviceId = viewDataBinding.etDeviceId.text.toString(),
-                    deviceName = viewDataBinding.etDeviceName.text.toString(),
-                    deviceType = viewDataBinding.etDeviceType.text.toString(),
-                    model = viewDataBinding.etModel.text.toString(),
-                    manufacturer = viewDataBinding.etManufracturer.text.toString(),
-                    otherDetails = viewDataBinding.etOther.text.toString()
-                )
-            }
+                deviceId = viewDataBinding.etDeviceId.text.toString(),
+                deviceName = viewDataBinding.etDeviceName.text.toString(),
+                deviceType = viewDataBinding.etDeviceType.text.toString(),
+                model = viewDataBinding.etModel.text.toString(),
+                manufacturer = viewDataBinding.etManufracturer.text.toString(),
+                otherDetails = viewDataBinding.etOther.text.toString()
+            )
+
+            var currentUser: User
+
+            viewModel.assignDevice(device, currentUser)
+        }
     }
 
+
     /*
-    * Observe register result..
+    * Observe assign result.
     * */
     private fun observeAssignResult(result: LiveData<ResponseResult<User>>) {
-        result.observe(this) {
-
+        result.observe(this) { response ->
             progress.isCancelable = false
 
-            when (it) {
+            when (response) {
                 is ResponseResult.Error -> {
                     if (progress.isAdded) progress.dismissAllowingStateLoss()
-                    showToast(it.exception)
+                    showToast(response.exception)
                 }
                 is ResponseResult.Loading -> {
                     if (!progress.isAdded) progress.show(
                         supportFragmentManager, ""
                     )
-
                 }
                 is ResponseResult.Success -> {
                     if (progress.isAdded) progress.dismissAllowingStateLoss()
-                    onAssignSuccess(it.data)
+                    onAssignSuccess(response.data)
                 }
-
             }
         }
     }
@@ -100,5 +95,4 @@ class AssignDeviceActivity : BaseActivity<ActivityAssignDeviceBinding, AssignDev
         launchActivityRTL(UserDetailsActivity::class.java)
         finish()
     }
-
 }

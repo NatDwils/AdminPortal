@@ -92,7 +92,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
         /*
         * Fetch user details
         * */
-        val user = DataPreference.getValue(DataPreferenceKeys.USER_SESSION)
+        val user = DataPreference.getValue(DataPreferenceKeys.USER_SESSION, String::class.java)
         viewModel.fetchUserDetails(user?.decode(User::class.java))
 
     }

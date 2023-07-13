@@ -2,6 +2,7 @@ package com.android.adminportal.data.local.MyPref
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.android.adminportal.data.model.User
 import java.util.*
 
 
@@ -80,7 +81,7 @@ object DataPreference {
      * @param preferencesKey the preferences key
      * @return the value
      */
-    fun getValue(key: DataPreferenceKeys): String? {
+    fun getValue(key: DataPreferenceKeys, java: Class<User>): String? {
         return settings!!.getString(key.name, "")
     }
 
