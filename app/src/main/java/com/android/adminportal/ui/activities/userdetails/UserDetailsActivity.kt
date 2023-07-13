@@ -63,15 +63,11 @@ class UserDetailsActivity : BaseActivity<ActivityUserDetailsBinding, UserDetails
         viewDataBinding.deviceCount.paintFlags = viewDataBinding.deviceCount.paintFlags or Paint.UNDERLINE_TEXT_FLAG
 
 
-        /*
-        * Set data..
-        * */
-        viewModel.setUserData(intent.getSerializableExtra("user") as User)
 
         viewDataBinding.btnAssign.setOnClickListener{
             val bundle = Bundle()
             bundle.putSerializable("user", intent.getSerializableExtra("user") as User)
-            launchActivityWithDataRTL(UserDetailsActivity::class.java, bundle)
+            launchActivityWithDataRTL(AssignDeviceActivity::class.java, bundle)
         }
     }
 
@@ -127,6 +123,15 @@ class UserDetailsActivity : BaseActivity<ActivityUserDetailsBinding, UserDetails
             e.printStackTrace()
         }
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        /*
+        * Set data..
+        * */
+        viewModel.setUserData(intent.getSerializableExtra("user") as User)
     }
 
 }

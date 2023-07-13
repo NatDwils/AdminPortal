@@ -89,8 +89,6 @@ class AssignDeviceActivity : BaseActivity<ActivityAssignDeviceBinding, AssignDev
     }
 
     private fun onAssignSuccess(user: User) {
-        DataPreference.addValue(DataPreferenceKeys.USER_SESSION, user.encode(User::class.java))
-        launchActivityRTL(UserDetailsActivity::class.java)
         finish()
     }
 }
