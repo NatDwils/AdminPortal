@@ -10,6 +10,7 @@ import com.android.adminportal.data.local.MyPref.DataPreference
 import com.android.adminportal.data.local.MyPref.DataPreferenceKeys
 import com.android.adminportal.databinding.ActivitySignupBinding
 import com.android.adminportal.ui.activities.dashboard.DashboardActivity
+import com.android.adminportal.ui.activities.login.LoginActivity
 import com.android.adminportal.ui.base.BaseActivity
 import com.android.adminportal.ui.dialogs.ProgressDialog
 import com.android.adminportal.utils.ktx.*
@@ -99,7 +100,7 @@ class SignUpActivity : BaseActivity<ActivitySignupBinding, SignUpViewModel>() {
 
     private fun onRegisterSuccess(user: User) {
         DataPreference.addValue(DataPreferenceKeys.USER_SESSION, user.encode(User::class.java))
-        launchActivityWithClearTaskRTL(DashboardActivity::class.java)
+        launchActivityWithClearTaskRTL(LoginActivity::class.java)
         finish()
     }
 

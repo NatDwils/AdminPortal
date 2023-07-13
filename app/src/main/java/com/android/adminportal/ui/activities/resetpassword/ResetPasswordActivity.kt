@@ -55,7 +55,6 @@ class ResetPasswordActivity : BaseActivity<ActivityResetPasswordBinding, ResetPa
             * Validate email..
             * */
             if (viewDataBinding.etEmail.text.toString()
-                    .isValidEmailAddress() && !viewDataBinding.etEmail.text.toString()
                     .isNullOrBlank()
             ) {
                 /*
