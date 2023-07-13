@@ -11,10 +11,13 @@ import com.android.adminportal.R
 import com.android.adminportal.data.model.Device
 import com.android.adminportal.data.model.User
 import com.android.adminportal.databinding.ActivityUserDetailsBinding
+import com.android.adminportal.ui.activities.assigndevice.AssignDeviceActivity
+import com.android.adminportal.ui.activities.signup.SignUpActivity
 import com.android.adminportal.ui.base.BaseActivity
 import com.android.adminportal.ui.dialogs.DevicesDialogSheet
 import com.android.adminportal.ui.dialogs.ProgressDialog
 import com.android.adminportal.utils.ktx.decode
+import com.android.adminportal.utils.ktx.launchActivityRTL
 import com.android.adminportal.utils.ktx.showToast
 import com.android.adminportal.utils.others.AppUtils
 import com.android.adminportal.utils.viewState.ResponseResult
@@ -63,6 +66,10 @@ class UserDetailsActivity : BaseActivity<ActivityUserDetailsBinding, UserDetails
         * Set data..
         * */
         viewModel.setUserData(intent.getSerializableExtra("user") as User)
+
+        viewDataBinding.btnAssign.setOnClickListener{
+            launchActivityRTL(AssignDeviceActivity::class.java)
+        }
     }
 
     /*

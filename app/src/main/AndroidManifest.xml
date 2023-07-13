@@ -14,6 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AdminPortal"
         tools:targetApi="31">
+
         <activity
             android:name=".ui.activities.splash.SplashActivity"
             android:exported="true"
@@ -50,6 +51,10 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activities.resetpassword.ResetPasswordActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activities.assigndevice.AssignDeviceActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
     </application>
