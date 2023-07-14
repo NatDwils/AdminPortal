@@ -43,18 +43,21 @@ class AssignDeviceActivity : BaseActivity<ActivityAssignDeviceBinding, AssignDev
 
     private fun init() {
 
+        val currentUser = intent.getSerializableExtra("user") as User
+        val empId = currentUser.employeeId
+
         viewDataBinding.btnAssign.setOnClickListener {
             val device = Device(
-                employeeId=viewDataBinding.employeeIdTextView.text.toString(),
+                employeeId=empId,
                 deviceId = viewDataBinding.etDeviceId.text.toString(),
                 deviceName = viewDataBinding.etDeviceName.text.toString(),
-                deviceType = viewDataBinding.etDeviceType.text.toString(),
+                deviceType = viewDataBinding.etDeviceType.selectedItem.toString(),
                 model = viewDataBinding.etModel.text.toString(),
                 manufacturer = viewDataBinding.etManufracturer.text.toString(),
                 otherDetails = viewDataBinding.etOther.text.toString()
             )
 
-            viewModel.assignDevice(device, intent.getSerializableExtra("user") as User)
+            viewModel.assignDevice(device, currentUser)
         }
     }
 
@@ -86,5 +89,10 @@ class AssignDeviceActivity : BaseActivity<ActivityAssignDeviceBinding, AssignDev
 
     private fun onAssignSuccess(user: User) {
         finish()
+    }
+
+    private fun getSpinnerSelection(deviceType : String):Int{
+        val deviceTypes= resources.getStringArray(R.array.device_Type)
+        return deviceTypes.indexOf(deviceType)
     }
 }

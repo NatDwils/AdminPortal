@@ -24,24 +24,6 @@
             android:gravity="center"
             android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/user_id_lable"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Employee Id"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/employeeIdTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{}"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="@id/user_id_lable"
-            app:layout_constraintStart_toStartOf="@id/user_id_lable"
-            app:layout_constraintTop_toBottomOf="@id/user_id_lable" />
-
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -72,6 +54,7 @@
                     android:drawablePadding="8dp"
                     android:hint="Device Id"
                     android:maxLength="10"
+                    android:inputType="number"
                     android:padding="8dp"
                     android:singleLine="true" />
 
@@ -85,15 +68,21 @@
                     android:padding="8dp"
                     android:singleLine="true" />
 
-                <EditText
+                <Spinner
                     android:id="@+id/et_device_type"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginTop="20dp"
                     android:drawablePadding="8dp"
-                    android:hint="Device Type"
-                    android:padding="8dp"
-                    android:singleLine="true" />
+                    android:text="Device Type"
+                    android:entries="@array/device_Type"
+                    android:padding="8dp" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:alpha="0.5"
+                    android:background="@color/black" />
 
                 <EditText
                     android:id="@+id/et_model"

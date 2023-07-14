@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Admin Portal</string>
+    <string-array name="device_Type">
+        <item>Laptop</item>
+        <item>Desktop</item>
+        <item>Mobile</item>
+        <item>Peripherals</item>
+    </string-array>
 </resources>

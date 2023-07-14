@@ -13,5 +13,6 @@ data class Device(
     var model: String = "",
     var manufacturer: String = "",
     var otherDetails: String = "",
-    var isOfflineDeleted: Boolean = false
+    var isOfflineDeleted: Boolean = false,
+    var isOfflineAdded: Boolean = false
 ) : java.io.Serializable
