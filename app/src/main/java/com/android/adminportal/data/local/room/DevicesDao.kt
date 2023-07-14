@@ -28,4 +28,5 @@ interface DevicesDao {
 
     @Query("DELETE FROM devices")
     suspend fun deleteAll()
+
 }

@@ -34,8 +34,7 @@ class DashboardViewModel @Inject constructor() : ViewModel() {
             viewModelScope.launch {
                 if (it && AppUtils.isInternetAvailable()) {
                     database.devicesDao().getAllDevices().onEach { list ->
-                        list.filter { item -> item.isOfflineDeleted }
-                            .forEach { device ->
+                        list.filter { item -> item.isOfflineDeleted }.forEach { device ->
                             val query = store.collectionGroup("devices")
                                 .whereEqualTo("deviceId", device.deviceId)
                             query.get().addOnSuccessListener { snap ->

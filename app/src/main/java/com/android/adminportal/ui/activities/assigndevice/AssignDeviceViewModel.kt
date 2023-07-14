@@ -31,11 +31,13 @@ class AssignDeviceViewModel @Inject constructor(var repository: DeviceRepository
                     _assignResult.postValue(it)
                 }
             } else {
-                viewModelScope.launch {
-                    device?.isOfflineAdded = true
-                    database.devicesDao().updateDevice(device)
-                    _assignResult.postValue(ResponseResult.Success(""))
-                }
+//                viewModelScope.launch {
+//                    device?.isOfflineAdded = true
+//                    database.devicesDao().updateDevice(device)
+//                    _assignResult.postValue(ResponseResult.Success(""))
+//                }
+                _assignResult.postValue(ResponseResult.Error("No internet connection. Please check your internet connectivity."))
+
             }
     }
 }
